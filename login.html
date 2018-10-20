@@ -1,19 +1,148 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>go server测试</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.1.js"></script>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        *{
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        input:focus{
+            outline: none
+        }
+        .flex-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .login-Container{
+            width: 80%;
+            height: auto;
+            border: 1px solid #d8d8d8;
+            border-radius: 15px;
+            padding: 40px 15px;
+            max-width: 400px;
+        }
+        .username,.password,.cred{
+            width: 100%;
+            height: 40px;
+            padding-left: 50px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        .username>label,.password>label,.cred>label{
+            float: left;
+            width: 50px;
+            margin-left: -50px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .username>input,.password>input{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 10px;
+            font-size: 14px;
+            border: 1px solid #d8d8d8;
+            border-radius: 10px;
+        }
+        .password{
+
+        }
+        .cred{
+
+        }
+        .cred>input{
+            width: 100px;
+            float: left;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 15px;
+            border: 1px solid #d8d8d8;
+            text-align: center;
+        }
+        .cred>img{
+            float: right;
+            width: 100px;
+            height: 40px;
+            background: orange;
+        }
+        .submit{
+            margin-top: 15px;
+        }
+        .submit>button{
+            line-height: 40px;
+            background: #188ae2;
+            text-align: center;
+            width: 100%;
+            height: 40px;
+            border-radius: 15px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .submit>button:active{
+            background: #1a47e2;
+        }
+        .submit>button:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <ul class="login-Container">
+            <li class="username">
+                <label for="username">账号</label>
+                <input type="text" id="username">
+            </li>
+            <li class="password">
+                <label for="password">密码</label>
+                <input type="password" id="password">
+            </li>
+            <li class="cred">
+                <label>验证码</label>
+                <input id="cred" type="text">
+                <image></image>
+            </li>
+            <li class="submit">
+                <button onclick="upload()">登录</button>
+            </li>
+        </ul>
+    </div>
     <script type="text/javascript">
+        //不需要的布冯直接注释掉就ok
         function upload(){
             var url = "http://localhost:8080/message/x";
+
+            let username = $('#username').val();
+            let password = $('#password').val();
+            let cred = $('#cred').val();
+
             var src ={};
             src["info"]=$("input").val();
             $.ajax({
                 url: url,
                 type: 'post',
                 data:src,
-                dataTypt: 'json',
+                dataType: 'json',
                 success: function(data){
                     $("a").text(data);
                 },
@@ -23,10 +152,5 @@
             });
         }
     </script>
-</head>
-<body>
-输入内容:<input name="info"></input>
-<input  type="submit"   value="提交" onclick="upload()">
-<div>回显内容:<a></a></div>
 </body>
 </html>
